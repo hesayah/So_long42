@@ -17,11 +17,12 @@ INCLUDE = So_long.h libs/libft/libft.h libs/gnl/get_next_line.h
 
 SRCS =	libs/gnl/get_next_line_utils.c \
 		libs/gnl/get_next_line.c \
-		srcs/brain.c \
-		srcs/error.c \
+		srcs/so_long.c \
 		srcs/init.c \
-		srcs/parsing.c \
-		srcs/load_xpm.c 
+		srcs/pars_brain.c \
+		srcs/pars_map.c \
+		srcs/key.c \
+		srcs/drawing.c 
 		
 LIBFT_PATH = libs/libft
 
@@ -33,9 +34,9 @@ OBJ = $(SRCS:.c=.o)
 
 GCC = gcc
 
-FLAGS = -Wall -Wextra -Werror -std=c11 -O3 -g3  -ggdb3 #fsanitize=address
+FLAGS = -Wall -Wextra -Werror -std=c11 -O3 -g3 -ggdb3 -fsanitize=address 
 
-MLX = -Llibs/mlx -lmlx -framework OpenGL -framework AppKit
+MLX = -Llibs/mlx -lmlx -lXext -lX11 -lbsd -lm
 
 all: $(NAME)
 $(NAME):${OBJ}
@@ -60,3 +61,4 @@ fclean: clean
 re: fclean all
 
 0: all clean
+

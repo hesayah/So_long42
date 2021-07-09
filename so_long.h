@@ -24,34 +24,16 @@
 # include "libs/libft/libft.h"
 # include "libs/gnl/get_next_line.h"
 
-typedef	struct		s_player
+typedef	struct		s_game
 {
-	int				m_x;
-	int				m_y;
-	int				max_y;
-	int				max_x;
-
-}					t_player;
-
-typedef	struct		s_texture
-{
-	char			*r_path;
-	int				bits_per_pixel;
-	int				line_length;
-	int				endian;
-	int				img_width;
-	int				img_height;
-	void			*img;
-	int				*addr;
-}					t_texture;
-
-typedef	struct		s_rgb
-{
-	int				r;
-	int				g;
-	int				b;
-	unsigned long	color;
-}					t_rgb;
+	int	x;
+	int	y;
+	int	m_w;
+	int	m_h;
+	float	map_x;
+	float	map_y;
+	int spown;
+}					t_game;
 
 
 typedef struct		s_data
@@ -68,34 +50,18 @@ typedef struct		s_data
 	int				w_h;
 	int				h_max;
 	int				err;
-	char			**tab;
 	char			**map;
-	t_player		player;
-	t_texture		t[5];
-	t_rgb			rgb;
+	t_game			game;
 }					t_data;
 
-void				loop_hook(t_data *data);
-int					close_window(t_data *data);
-int					ft_check_arg(int argc, char *str);
-int					brain(int argc, char **argv, t_data *data);
-void				init_data(t_data *data);
-void				pars_brain(char *file, t_data *data);
-int					pars_value_line(t_data *data);
-int					c_in_str(char c, char *s2);
-void				get_res(char *str, t_data *data);
-unsigned long		ft_rgb(int r, int g, int b);
-void				ft_get_map(int index, t_data *data);
-void				init_map_and_cam(t_data *data);
-void				get_first_player_pos(t_data *data);
-int					pars_sprite(t_data *data);
-int					load_xpm(t_data *data);
-int					action_key(int keycode, t_data *data);
+int				pars_brain(char *file, t_data *data);
+int				pars_map(t_data *data);
 int					render_next_frame(t_data *data);
-void				ray_casting(double *buff, t_data *data);
-void				my_mlx_pixel_put(int x, int y, int color, t_data *data);
-void				code_err(int code);
-void				exit_error(int code, t_data *data);
-int					clean_up(t_data *data);
+void				draw_map(t_data *data);
+void			my_mlx_pixel_put(int x, int y, int color, t_data *data);
+void			init_data(t_data *data);
+int		close_window(t_data *data);
+int				action_key(int keycode, t_data *data);
+
 
 #endif

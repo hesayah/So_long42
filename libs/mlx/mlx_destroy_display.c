@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_c_in_str.c                                      :+:      :+:    :+:   */
+/*   mlx_destroy_display.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/04 14:54:55 by hesayah           #+#    #+#             */
-/*   Updated: 2021/03/27 15:10:00 by hesayah          ###   ########.fr       */
+/*   Created: 2020/10/03 18:56:35 by mg                #+#    #+#             */
+/*   Updated: 2020/10/04 01:55:35 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "mlx_int.h"
 
-int	ft_c_in_str(char c, char *s2)
+int	mlx_destroy_display(t_xvar *xvar)
 {
-	int i;
-
-	i = 0;
-	if (!c || !s2)
-		return (0);
-	while (s2[i] != '\0')
-	{
-		if (c == s2[i])
-			return (1);
-		i++;
-	}
-	return (0);
+	XCloseDisplay(xvar->display);
 }

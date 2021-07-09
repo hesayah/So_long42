@@ -37,8 +37,12 @@ char	*ft_start(char *res, int fd)
 
 char	*ft_res2(int ret, char *res, char *buff)
 {
+	char *leak;
+
 	buff[ret] = '\0';
+	leak = res;
 	res = ft_strjoin(res, buff);
+	free(leak);
 	return (res);
 }
 
