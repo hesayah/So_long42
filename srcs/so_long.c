@@ -65,7 +65,6 @@ int		main(int argc, char **argv)
 		ft_putstr_fd("Error : wrong map\n", 0);
 		return (0);
 	}
-	mlx_get_screen_size(data.mlx, &data.w_max, &data.h_max);
 	loop_hook(&data);
 	ft_free(data.map);
 }

@@ -25,7 +25,7 @@ static int	check_if_rec(t_data *data)
 			return (0);
 	y = -1;
 	while (++y <= data->game.m_h)
-		if (data->map[y][data->game.m_w] != '1')
+		if (data->map[y][data->game.map_x] != '1')
 			return (0);
 	x = -1;
 	while (++x <= data->game.m_w)
@@ -33,7 +33,7 @@ static int	check_if_rec(t_data *data)
 			return (0);
 	x = -1;
 	while (++x <= data->game.m_w)
-		if (data->map[x][data->game.m_h] != '1')
+		if (data->map[x][data->game.map_y] != '1')
 			return (0);
 	if (data->game.spown > 1)
 		return (0);
@@ -67,13 +67,18 @@ int	pars_map(t_data *data)
 		}
 		y++;
 	}
-	data->game.m_w = len;
-	data->game.m_h = y;	
-	data->game.map_x = (data->w_w) / (data->game.m_w);
-	data->game.map_y = (data->w_h) / (data->game.m_h);
-	printf("collect 1 == [%i]\n", data->game.collect);
-	/*data->w_w = data->w_w % (int)data->game.map_x;
-	data->w_h = data->w_h % (int)data->game.map_y;*/
+	data->game.map_x = len;
+	data->game.map_y = y;	
+	data->game.m_w = (data->w_max) / (data->game.map_x);
+	data->game.m_h = (data->h_max) / (data->game.map_y);
+	//printf("x == [%f] && y == [%f] \n", data->game.m_w, data->game.m_h);
+	//printf("map_x == [%i] && map_y == [%i] \n", data->game.map_x, data->game.map_y);
+	if (data->game.m_w < data->game.m_h)
+		data->game.m_h = data->game.m_w;
+	else
+		data->game.m_w = data->game.m_h;
+	data->w_w = data->game.m_w * (int)data->game.map_x;
+	data->w_h = data->game.m_h * (int)data->game.map_y;
 	/*if (!check_if_rec(data))
 		return (0);*/
 	//init_map(data);

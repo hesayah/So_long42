@@ -15,20 +15,32 @@ unsigned	long	ft_rgb(int r, int g, int b)
 	return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 }
 
-static	void		draw_map_two(t_data *data, int x , int y, int px, int py)
+void			draw_sprite(t_data *data, int  xx, int  yy)
 {
-	if (data->map[py][px]
-	&& data->map[py][px] == '0')
-		my_mlx_pixel_put(x, y, 0x2F4F4F, data);
-	else if (data->map[py][px]
-	&& data->map[py][px] == 'C')
-		my_mlx_pixel_put(x, y, 0xD3D3D3, data);
-	else if (data->map[py][px]
-	&& data->map[py][px] == 'P')
-		my_mlx_pixel_put(x, y, 0021131000, data);
+	int y;
+	int x;
+
+	x = xx;
+	while (x++ < xx)
+	{
+		{
+			y = yy + 1;
+			while (y++ < ((yy + 1) % data->game. )
+			{
+				data->tex.pixel = (y) * 256 - data->game.m_h * 128
+				+ data->srt.srt_h * 128;
+				data->tex.y = ((data->tex.pixel * data->tex[4].img_height)
+				/ data->game.m_w / 256;
+				data->rgb.color = data->tex[4].addr[data->tex[4].img_width
+				* data->tex.y + data->tex.x];
+				if ((data->tex.color & 0x00FFFFFF) != 0)
+					my_mlx_pixel_put(x, y, data->tex.color, data);
+			}
+		}
+	}
 }
 
-void				draw_map(t_data *data)
+void		draw_map(t_data *data)
 {
 	int x;
 	int y;
@@ -37,13 +49,13 @@ void				draw_map(t_data *data)
 
 	y = 1;
 	py = 0;
-	while (py < data->game.m_h)
+	while (py < data->game.map_y)
 	{
 		x = 1;
 		px = 0;
-		while (px < data->game.m_w)
+		while (px < data->game.map_x)
 		{
-			if (x % (int)data->game.map_x == 0)
+			if (x % (int)data->game.m_w == 0)
 			{
 				px++;
 				x++;
@@ -52,13 +64,64 @@ void				draw_map(t_data *data)
 			x++;
 		}
 		y++;
-		if ((y % (int)data->game.map_y) == 0)
+		if ((y % (int)data->game.m_h) == 0)
 		{
 			py++;
 			y++;
 		}
 	}
 }
+
+/*static	void		draw_map_two(t_data *data, int x , int y, int px, int py)
+{
+	if (data->map[py][px]
+	&& data->map[py][px] == '0')
+		my_mlx_pixel_put(x, y, 0x2F4F4F, data);
+	else if (data->map[py][px]
+	&& data->map[py][px] == 'C')
+		my_mlx_pixel_put(x, y, 0xD3D3D3, data);
+	else if (data->map[py][px]
+	&& data->map[py][px] == '1')
+		my_mlx_pixel_put(x, y, 0021131000, data);
+	else if (data->map[py][px]
+	&& data->map[py][px] == '0')
+		my_mlx_pixel_put(x, y, 0xFFFFFFF, data);
+	else if (data->map[py][px]
+	&& data->map[py][px] == 'P')
+		my_mlx_pixel_put(x, y, 0x5555, data);*/
+}
+
+/*void				draw_map(t_data *data)
+{
+	int x;
+	int y;
+	int px;
+	int py;
+
+	y = 1;
+	py = 0;
+	while (py < data->game.map_y)
+	{
+		x = 1;
+		px = 0;
+		while (px < data->game.map_x)
+		{
+			if (x % (int)data->game.m_w == 0)
+			{
+				px++;
+				x++;
+			}
+			draw_map_two(data, x,y,px,py);
+			x++;
+		}
+		y++;
+		if ((y % (int)data->game.m_h) == 0)
+		{
+			py++;
+			y++;
+		}
+	}
+}*/
 
 int					render_next_frame(t_data *data)
 {

@@ -24,14 +24,33 @@
 # include "libs/libft/libft.h"
 # include "libs/gnl/get_next_line.h"
 
+typedef	struct		s_tex
+{
+	char			*r_path;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+	int				img_width;
+	int				img_height;
+	void			*img;
+	int				*addr;
+	int				x;
+	int				y;
+	int				r;
+	int				g;
+	int				b;
+	unsigned long	color;
+	int				pixel;
+}					t_tex;
+
 typedef	struct		s_game
 {
 	int				x;
 	int				y;
-	int				m_w;
-	int				m_h;
-	float			map_x;
-	float			map_y;
+	float			m_w;
+	float			m_h;
+	int				map_x;
+	int				map_y;
 	int 			spown;
 	int				collect;
 }					t_game;
@@ -53,6 +72,7 @@ typedef struct		s_data
 	int				err;
 	char			**map;
 	t_game			game;
+	t_tex			tex;
 }					t_data;
 
 int				pars_brain(char *file, t_data *data);
