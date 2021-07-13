@@ -24,8 +24,8 @@ static	void		draw_map_two(t_data *data, int x , int y, int px, int py)
 	&& data->map[py][px] == 'C')
 		my_mlx_pixel_put(x, y, 0xD3D3D3, data);
 	else if (data->map[py][px]
-	&& data->map[py][px] == '0')
-		my_mlx_pixel_put(x, y, 0x99D8D89, data);
+	&& data->map[py][px] == 'P')
+		my_mlx_pixel_put(x, y, 0021131000, data);
 }
 
 void				draw_map(t_data *data)
@@ -62,6 +62,7 @@ void				draw_map(t_data *data)
 
 int					render_next_frame(t_data *data)
 {
+	mlx_clear_window(data->mlx, data->win);
 	draw_map(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (0);

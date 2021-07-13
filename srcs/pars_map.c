@@ -59,7 +59,8 @@ int	pars_map(t_data *data)
 			{
 				data->game.x = x;
 				data->game.y = y;
-				data->map[y][x] == '0';
+				printf("[x == %i && y == %i] \n", data->game.x, data->game.y);
+				data->map[y][x] = '0';
 				data->game.spown++;
 			}
 			x++;
@@ -68,8 +69,10 @@ int	pars_map(t_data *data)
 	}
 	data->game.m_w = len;
 	data->game.m_h = y;	
-	data->game.map_x = (int)(data->w_w) / (data->game.m_w);
-	data->game.map_y = (int)(data->w_h) / (data->game.m_h);
+	data->game.map_x = (data->w_w) / (data->game.m_w);
+	data->game.map_y = (data->w_h) / (data->game.m_h);
+	/*data->w_w = data->w_w % (int)data->game.map_x;
+	data->w_h = data->w_h % (int)data->game.map_y;*/
 	/*if (!check_if_rec(data))
 		return (0);*/
 	//init_map(data);
