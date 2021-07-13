@@ -26,13 +26,14 @@
 
 typedef	struct		s_game
 {
-	int	x;
-	int	y;
-	int	m_w;
-	int	m_h;
-	float	map_x;
-	float	map_y;
-	int spown;
+	int				x;
+	int				y;
+	int				m_w;
+	int				m_h;
+	float			map_x;
+	float			map_y;
+	int 			spown;
+	int				collect;
 }					t_game;
 
 
@@ -60,8 +61,8 @@ int					render_next_frame(t_data *data);
 void				draw_map(t_data *data);
 void			my_mlx_pixel_put(int x, int y, int color, t_data *data);
 void			init_data(t_data *data);
-int		close_window(t_data *data);
 int				action_key(int keycode, t_data *data);
-
+int				clean_up(t_data *data);
+int				close_window(t_data *data);
 
 #endif

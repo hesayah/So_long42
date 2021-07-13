@@ -18,7 +18,7 @@ unsigned	long	ft_rgb(int r, int g, int b)
 static	void		draw_map_two(t_data *data, int x , int y, int px, int py)
 {
 	if (data->map[py][px]
-	&& data->map[py][px] == '1')
+	&& data->map[py][px] == '0')
 		my_mlx_pixel_put(x, y, 0x2F4F4F, data);
 	else if (data->map[py][px]
 	&& data->map[py][px] == 'C')

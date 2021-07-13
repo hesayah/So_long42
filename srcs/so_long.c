@@ -7,6 +7,7 @@ static void		loop_hook(t_data *data)
 	data->img = mlx_new_image(data->mlx, data->w_w, data->w_h);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 	&data->line_length, &data->endian);
+	//render_next_frame(data);
 	//mlx_loop_hook(data->mlx, render_next_frame, data);
 	mlx_hook(data->win, 2, 1L << 0, action_key, data);
 	mlx_hook(data->win, 33, 1L << 17, close_window, data);
