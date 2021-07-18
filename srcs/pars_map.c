@@ -82,5 +82,6 @@ int	pars_map(t_data *data)
 	/*if (!check_if_rec(data))
 		return (0);*/
 	//init_map(data);
+	load_xpm(data);
 	return (1);
 }

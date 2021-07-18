@@ -24,7 +24,7 @@
 # include "libs/libft/libft.h"
 # include "libs/gnl/get_next_line.h"
 
-typedef	struct		s_tex
+typedef	struct 		s_tex
 {
 	char			*r_path;
 	int				bits_per_pixel;
@@ -34,6 +34,10 @@ typedef	struct		s_tex
 	int				img_height;
 	void			*img;
 	int				*addr;
+}					t_tex;
+
+typedef	struct		s_draw
+{
 	int				x;
 	int				y;
 	int				r;
@@ -41,7 +45,7 @@ typedef	struct		s_tex
 	int				b;
 	unsigned long	color;
 	int				pixel;
-}					t_tex;
+}					t_draw;
 
 typedef	struct		s_game
 {
@@ -72,15 +76,19 @@ typedef struct		s_data
 	int				err;
 	char			**map;
 	t_game			game;
-	t_tex			tex;
+	t_tex			tex[5];
+	t_draw			draw;
 }					t_data;
 
+
+void			init_data(t_data *data);
 int				pars_brain(char *file, t_data *data);
 int				pars_map(t_data *data);
-int					render_next_frame(t_data *data);
-void				draw_map(t_data *data);
+int				load_xpm(t_data *data);
+int				render_next_frame(t_data *data);
+void			draw_map(t_data *data);
 void			my_mlx_pixel_put(int x, int y, int color, t_data *data);
-void			init_data(t_data *data);
+
 int				action_key(int keycode, t_data *data);
 int				clean_up(t_data *data);
 int				close_window(t_data *data);
