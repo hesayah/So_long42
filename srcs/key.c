@@ -11,24 +11,24 @@ int		close_window(t_data *data)
 
 static	int	move(int keycode, t_data *data)
 {
-	if (data->map[data->game.y][data->game.x] == 'C')
+	if (data->map[(int)data->game.y][(int)data->game.x] == 'C')
 		data->game.collect--;
-	if (data->map[data->game.y][data->game.x] != 'E')
-		data->map[data->game.y][data->game.x] = '0';
-	if	(keycode ==  119 && data->map[data->game.y - 1][data->game.x] != '1')
+	if (data->map[(int)data->game.y][(int)data->game.x] != 'E')
+		data->map[(int)data->game.y][(int)data->game.x] = '0';
+	if	(keycode ==  119 && data->map[(int)(data->game.y - 1)][(int)data->game.x] != '1')
 		data->game.y = data->game.y - 1;
-	else if (keycode == 115 && data->map[data->game.y + 1][data->game.x] != '1')
+	else if (keycode == 115 && data->map[(int)(data->game.y + 1)][(int)data->game.x] != '1')
 		data->game.y = data->game.y + 1;
-	else if (keycode == 100 && data->map[data->game.y][data->game.x+ 1] != '1')
+	else if (keycode == 100 && data->map[(int)data->game.y][(int)(data->game.x + 1)] != '1')
 		data->game.x = data->game.x + 1;
-	else if (keycode == 97 && data->map[data->game.y][data->game.x- 1] != '1')
+	else if (keycode == 97 && data->map[(int)data->game.y][(int)(data->game.x - 1)] != '1')
 		data->game.x = data->game.x - 1;
-	if (data->map[data->game.y][data->game.x] == 'C')
+	if (data->map[(int)data->game.y][(int)data->game.x] == 'C')
 		data->game.collect--;
-	else if (data->map[data->game.y][data->game.x] == 'E' && data->game.collect == 0)
+	else if (data->map[(int)data->game.y][(int)data->game.x] == 'E' && data->game.collect == 0)
 		close_window(data);
-	if (data->map[data->game.y][data->game.x] != 'E')
-		data->map[data->game.y][data->game.x] = 'P';
+	if (data->map[(int)data->game.y][(int)data->game.x] != 'E')
+		data->map[(int)data->game.y][(int)data->game.x] = 'P';
 
 }
 
@@ -40,6 +40,5 @@ int				action_key(int keycode, t_data *data)
 	else if (keycode == 119 || keycode == 97 || keycode == 100 ||
 	keycode == 115)
 		move(keycode, data);
-	//render_next_frame(data);	
 	return (0);
 }

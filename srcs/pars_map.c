@@ -25,7 +25,7 @@ static int	check_if_rec(t_data *data)
 			return (0);
 	y = -1;
 	while (++y <= data->game.m_h)
-		if (data->map[y][data->game.map_x] != '1')
+		if (data->map[y][(int)data->game.map_x] != '1')
 			return (0);
 	x = -1;
 	while (++x <= data->game.m_w)
@@ -33,7 +33,7 @@ static int	check_if_rec(t_data *data)
 			return (0);
 	x = -1;
 	while (++x <= data->game.m_w)
-		if (data->map[x][data->game.map_y] != '1')
+		if (data->map[x][(int)data->game.map_y] != '1')
 			return (0);
 	if (data->game.spown > 1)
 		return (0);
@@ -57,11 +57,17 @@ int	pars_map(t_data *data)
 		{
 			if (data->map[y][x] == 'C')
 				data->game.collect++;
-			if (data->map[y][x] == 'P')
+			else if (data->map[y][x] == 'P')
 			{
 				data->game.x = x;
 				data->game.y = y;
 				data->game.spown++;
+			}
+			else if (data->map[y][x] == 'E')
+			{
+				data->game.door_x = x;
+				data->game.door_y = y;
+				data->map[y][x] == '0';
 			}
 			x++;
 		}

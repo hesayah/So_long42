@@ -10,7 +10,6 @@
 #                                                                              #
 # **************************************************************************** #
 
-
 NAME = SoLong
 
 INCLUDE = So_long.h libs/libft/libft.h libs/gnl/get_next_line.h
@@ -35,7 +34,7 @@ OBJ = $(SRCS:.c=.o)
 
 GCC = gcc
 
-FLAGS = -Wall -Wextra -Werror -std=c11 -O3 -g3 -ggdb3 -fsanitize=address 
+FLAGS = -Wall -Wextra -Werror -std=c11 -O3 -g3 -ggdb3 #-fsanitize=address 
 
 MLX = -Llibs/mlx -lmlx -lXext -lX11 -lbsd -lm
 
