@@ -6,7 +6,7 @@
 #    By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/08 00:23:17 by hesayah           #+#    #+#              #
-#    Updated: 2021/07/08 04:01:51 by hesayah          ###   ########.fr        #
+#    Updated: 2021/08/02 23:34:33 by hesayah          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS =	libs/gnl/get_next_line_utils.c \
 		srcs/pars_map.c \
 		srcs/key.c \
 		srcs/drawing.c \
+		srcs/drawing_utils.c \
 		srcs/exit.c
 
 LIBFT_PATH = libs/libft

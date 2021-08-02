@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pars_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/02 23:02:35 by hesayah           #+#    #+#             */
+/*   Updated: 2021/08/02 23:11:13 by hesayah          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../so_long.h"
 
-static int				check_value(char *map)
+static int	check_value(char *map)
 {
-	int x;
+	int	x;
 
 	x = 0;
 	while (map[x])
@@ -16,7 +28,7 @@ static int				check_value(char *map)
 
 static int	check_if_rec(t_data *data)
 {
-	int x;
+	int	x;
 	int	y;
 
 	y = -1;
@@ -40,9 +52,44 @@ static int	check_if_rec(t_data *data)
 	return (1);
 }
 
+int	init_map_value(t_data *data, int x, int y)
+{
+	if (!check_if_rec(data))
+		return (0);
+	load_xpm(data);
+	data->game.map_x = x;
+	data->game.map_y = y;
+	data->game.m_w = (data->w_max) / (data->game.map_x);
+	data->game.m_h = (data->h_max) / (data->game.map_y);
+	if (data->game.m_w < data->game.m_h)
+		data->game.m_h = data->game.m_w;
+	else
+		data->game.m_w = data->game.m_h;
+	data->w_w = data->game.m_w * (int)data->game.map_x;
+	data->w_h = data->game.m_h * (int)data->game.map_y;
+}
+
+void	assigne_value(t_data *data, int x, int y)
+{
+	if (data->map[y][x] == 'C')
+		data->game.collect++;
+	else if (data->map[y][x] == 'P')
+	{
+		data->game.x = x;
+		data->game.y = y;
+		data->game.spown++;
+	}
+	else if (data->map[y][x] == 'E')
+	{
+		data->game.door_x = x;
+		data->game.door_y = y;
+		data->map[y][x] == '0';
+	}
+}
+
 int	pars_map(t_data *data)
 {
-	int x;
+	int	x;
 	int	y;
 	int	len;
 
@@ -55,39 +102,10 @@ int	pars_map(t_data *data)
 		x = 0;
 		while (data->map[y][x])
 		{
-			if (data->map[y][x] == 'C')
-				data->game.collect++;
-			else if (data->map[y][x] == 'P')
-			{
-				data->game.x = x;
-				data->game.y = y;
-				data->game.spown++;
-			}
-			else if (data->map[y][x] == 'E')
-			{
-				data->game.door_x = x;
-				data->game.door_y = y;
-				data->map[y][x] == '0';
-			}
+			assigne_value(data, x, y);
 			x++;
 		}
 		y++;
 	}
-	data->game.map_x = len;
-	data->game.map_y = y;	
-	data->game.m_w = (data->w_max) / (data->game.map_x);
-	data->game.m_h = (data->h_max) / (data->game.map_y);
-	//printf("x == [%f] && y == [%f] \n", data->game.m_w, data->game.m_h);
-	//printf("map_x == [%i] && map_y == [%i] \n", data->game.map_x, data->game.map_y);
-	if (data->game.m_w < data->game.m_h)
-		data->game.m_h = data->game.m_w;
-	else
-		data->game.m_w = data->game.m_h;
-	data->w_w = data->game.m_w * (int)data->game.map_x;
-	data->w_h = data->game.m_h * (int)data->game.map_y;
-	/*if (!check_if_rec(data))
-		return (0);*/
-	//init_map(data);
-	load_xpm(data);
-	return (1);
+	return (init_map_value(data, len, y));
 }

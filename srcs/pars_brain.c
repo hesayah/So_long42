@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pars_brain.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/02 23:11:31 by hesayah           #+#    #+#             */
+/*   Updated: 2021/08/02 23:12:26 by hesayah          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../so_long.h"
 
-
-static	int			get_nb(char *file)
+static int	get_nb(char *file)
 {
 	int		i;
 	int		fd;
@@ -20,15 +31,15 @@ static	int			get_nb(char *file)
 	return (i);
 }
 
-static int				get_map(char *file, t_data *data)
+static int	get_map(char *file, t_data *data)
 {
-	int	fd;
-	int	i;
-	char *line;
+	int		fd;
+	int		i;
+	char	*line;
 
 	i = get_nb(file);
 	fd = open(file, O_RDONLY);
-	data->map = (char**)malloc(sizeof(char*) * (i + 1));
+	data->map = (char **)malloc(sizeof(char *) * (i + 1));
 	if (!data->map)
 		return (0);
 	i = 0;
@@ -44,7 +55,7 @@ static int				get_map(char *file, t_data *data)
 	return (1);
 }
 
-int				pars_brain(char *file, t_data *data)
+int	pars_brain(char *file, t_data *data)
 {
 	if (!get_map(file, data))
 		return (0);

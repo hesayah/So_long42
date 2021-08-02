@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 00:24:49 by hesayah           #+#    #+#             */
-/*   Updated: 2021/07/08 03:59:48 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/08/02 23:20:29 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include "libs/libft/libft.h"
 # include "libs/gnl/get_next_line.h"
 
-typedef	struct 		s_tex
+typedef struct		s_tex
 {
 	char			*r_path;
 	int				bits_per_pixel;
@@ -36,18 +36,20 @@ typedef	struct 		s_tex
 	int				*addr;
 }					t_tex;
 
-typedef	struct		s_draw
+typedef struct		s_draw
 {
 	int				x;
 	int				y;
 	int				r;
 	int				g;
 	int				b;
+	float			scale_x;
+	float			scale_y;
 	unsigned long	color;
 	int				pixel;
 }					t_draw;
 
-typedef	struct		s_game
+typedef struct		s_game
 {
 	float			x;
 	float			y;
@@ -57,10 +59,9 @@ typedef	struct		s_game
 	float			map_y;
 	float			door_x;
 	float			door_y;
-	int 			spown;
+	int				spown;
 	int				collect;
 }					t_game;
-
 
 typedef struct		s_data
 {
@@ -81,7 +82,6 @@ typedef struct		s_data
 	t_tex			tex[5];
 	t_draw			draw;
 }					t_data;
-
 
 void			init_data(t_data *data);
 int				pars_brain(char *file, t_data *data);
