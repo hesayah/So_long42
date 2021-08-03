@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 15:49:59 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/06 16:02:37 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/08/03 17:31:10 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ char	*ft_start(char *res, int fd)
 		return (NULL);
 	if (!res)
 	{
-		if (!(res = (char *)malloc(sizeof(char) * 1)))
+		res = (char *)malloc(sizeof(char) * 1);
+		if (!res)
 			return (NULL);
 		res[0] = '\0';
 	}
@@ -37,7 +38,7 @@ char	*ft_start(char *res, int fd)
 
 char	*ft_res2(int ret, char *res, char *buff)
 {
-	char *leak;
+	char	*leak;
 
 	buff[ret] = '\0';
 	leak = res;
@@ -46,13 +47,28 @@ char	*ft_res2(int ret, char *res, char *buff)
 	return (res);
 }
 
-int		get_next_line(int fd, char **line)
+static int	work_line(char *res, char ***line, int ret)
+{
+	if (ret > 0)
+	{
+		**line = ft_substr(res, 0, ft_checklen(res));
+		res = ft_res(res);
+		return (1);
+	}
+	**line = ft_substr(res, 0, ft_strlen(res));
+	free(res);
+	res = NULL;
+	return (0);
+}
+
+int	get_next_line(int fd, char **line)
 {
 	char		buff[BUFFER_SIZE + 1];
 	static char	*res;
 	size_t		ret;
 
-	if (fd < 0 || !line || !(res = ft_start(res, fd)))
+	res = ft_start(res, fd);
+	if (fd < 0 || !line || !res)
 		return (-1);
 	if (ft_check(res) == 0)
 	{
@@ -60,17 +76,13 @@ int		get_next_line(int fd, char **line)
 		res = ft_res(res);
 		return (1);
 	}
-	while (ft_check(res) == 1 && (ret = read(fd, buff, BUFFER_SIZE)) > 0)
-		if (!(res = ft_res2(ret, res, buff)))
-			return (-1);
-	if (ret > 0)
+	while (ft_check(res) == 1 && ret > 0)
 	{
-		*line = ft_substr(res, 0, ft_checklen(res));
-		res = ft_res(res);
-		return (1);
+		ret = read(fd, buff, BUFFER_SIZE);
+		res = ft_res2(ret, res, buff);
+		if (!res)
+			return (-1);
 	}
-	*line = ft_substr(res, 0, ft_strlen(res));
-	free(res);
-	res = NULL;
+	work_line(&res, &line, ret);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 09:13:32 by hesayah           #+#    #+#             */
-/*   Updated: 2021/05/14 10:24:48 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/08/03 17:20:20 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_char_to_str(char c)
 {
 	char	*dst;
 
-    dst = malloc(sizeof(char) * 2);
+	dst = malloc(sizeof(char) * 2);
 	if (dst == NULL)
 		return (NULL);
 	dst[0] = c;

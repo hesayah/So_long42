@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 14:10:30 by hesayah           #+#    #+#             */
-/*   Updated: 2021/05/15 11:08:11 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/08/03 17:19:49 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	creat_tab(char **new, char *str, const char *set, int c_w)
 {
 	int	word;
-	int len;
+	int	len;
 	int	index;
 
 	word = 0;
@@ -24,7 +24,7 @@ static int	creat_tab(char **new, char *str, const char *set, int c_w)
 	{
 		len = 0;
 		while (str[index + len]
-		&& ft_c_in_str(str[index + len], (char *)set) != 0)
+			&& ft_c_in_str(str[index + len], (char *)set) != 0)
 			len++;
 		new[word] = ft_substr(str, index, len);
 		index += len;
@@ -53,7 +53,7 @@ static int	c_words(char *str, const char *set)
 	while (str[i])
 	{
 		if (ft_c_in_str(str[i], (char *)set) == 0 && str[i + 1]
-		&& ft_c_in_str(str[i + 1], (char *)set) == 1)
+			&& ft_c_in_str(str[i + 1], (char *)set) == 1)
 			words++;
 		i++;
 	}

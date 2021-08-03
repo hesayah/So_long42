@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 17:15:41 by hesayah           #+#    #+#             */
-/*   Updated: 2021/05/16 17:07:35 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/08/03 17:19:01 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 	struct s_list	*previous;
-	
 }					t_list;
 
 char				*ft_char_to_str(char c);

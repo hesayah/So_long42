@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 15:49:41 by hesayah           #+#    #+#             */
-/*   Updated: 2021/01/28 11:40:04 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/08/03 17:21:07 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ size_t	ft_check(char *str)
 
 size_t	ft_checklen(char *str)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (str[i] && str[i] != '\n')

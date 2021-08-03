@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 19:38:31 by hesayah           #+#    #+#             */
-/*   Updated: 2021/05/16 12:17:43 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/08/03 17:17:52 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 long	ft_atoi(const char *str)
 {
-	long 	i;
-	long 	nb;
-	long 	sig;
+	long	i;
+	long	nb;
+	long	sig;
 
 	i = 0;
 	nb = 0;
