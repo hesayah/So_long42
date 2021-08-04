@@ -24,6 +24,8 @@
 # include "libs/libft/libft.h"
 # include "libs/gnl/get_next_line.h"
 
+# define DEBUG printf("fichier : %s,  line : %i\n", __FILE__, __LINE__);
+
 typedef struct		s_tex
 {
 	char			*r_path;
@@ -61,6 +63,9 @@ typedef struct		s_game
 	float			door_y;
 	int				spown;
 	int				collect;
+	float			step;
+	int				frame;
+	char			*step_str;
 }					t_game;
 
 typedef struct		s_data
@@ -79,7 +84,7 @@ typedef struct		s_data
 	int				err;
 	char			**map;
 	t_game			game;
-	t_tex			tex[5];
+	t_tex			tex[8];
 	t_draw			draw;
 }					t_data;
 

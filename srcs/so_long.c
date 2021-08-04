@@ -19,9 +19,10 @@ static void	loop_hook(t_data *data)
 	data->img = mlx_new_image(data->mlx, data->w_w, data->w_h);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 			&data->line_length, &data->endian);
+	mlx_hook(data->win, 33, 1L << 17, close_window, data);
 	mlx_loop_hook(data->mlx, render_next_frame, data);
 	mlx_hook(data->win, 2, 1L << 0, action_key, data);
-	mlx_hook(data->win, 33, 1L << 17, close_window, data);
+	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	mlx_loop(data->mlx);
 }
 
@@ -71,7 +72,8 @@ int	main(int argc, char **argv)
 	ret = pars_brain(argv[1], &data);
 	if (!ret)
 	{
-		ft_putstr_fd("Error : wrong map\n", 0);
+		ft_putstr_fd("Error : LOADING GAME FAIL\n", 0);
+		clean_up(&data);
 		return (0);
 	}
 	loop_hook(&data);

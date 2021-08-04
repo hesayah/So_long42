@@ -47,19 +47,19 @@ char	*ft_res2(int ret, char *res, char *buff)
 	return (res);
 }
 
-static int	work_line(char *res, char ***line, int ret)
+/*static int	work_line(char **res, char ***line, int ret)
 {
 	if (ret > 0)
 	{
-		**line = ft_substr(res, 0, ft_checklen(res));
-		res = ft_res(res);
+		**line = ft_substr(*res, 0, ft_checklen(*res));
+		*res = ft_res(*res);
 		return (1);
 	}
-	**line = ft_substr(res, 0, ft_strlen(res));
-	free(res);
-	res = NULL;
+	**line = ft_substr(*res, 0, ft_strlen(*res));
+	free(*res);
+	*res = NULL;
 	return (0);
-}
+}*/
 
 int	get_next_line(int fd, char **line)
 {
@@ -76,6 +76,7 @@ int	get_next_line(int fd, char **line)
 		res = ft_res(res);
 		return (1);
 	}
+	ret = 1;
 	while (ft_check(res) == 1 && ret > 0)
 	{
 		ret = read(fd, buff, BUFFER_SIZE);
@@ -83,6 +84,15 @@ int	get_next_line(int fd, char **line)
 		if (!res)
 			return (-1);
 	}
-	work_line(&res, &line, ret);
+	//work_line(&res, &line, ret);
+	if (ret > 0)
+	{
+		*line = ft_substr(res, 0, ft_checklen(res));
+		res = ft_res(res);
+		return (1);
+	}
+	*line = ft_substr(res, 0, ft_strlen(res));
+	free(res);
+	res = NULL;
 	return (0);
 }

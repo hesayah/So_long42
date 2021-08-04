@@ -21,7 +21,18 @@ int	close_window(t_data *data)
 	return (0);
 }
 
-static int	move(int keycode, t_data *data)
+static void	do_move(float *variable, int value, t_data *data)
+{
+	char	*tmp;
+
+	*variable = *variable + value;
+	data->game.step--;
+	tmp = data->game.step_str;
+	data->game.step_str = ft_itoa(data->game.step);
+	free(tmp);
+}
+
+static void	move(int keycode, t_data *data)
 {
 	if (data->map[(int)data->game.y][(int)data->game.x] == 'C')
 		data->game.collect--;
@@ -29,20 +40,20 @@ static int	move(int keycode, t_data *data)
 		data->map[(int)data->game.y][(int)data->game.x] = '0';
 	if (keycode == 119 && data->map[(int)(data->game.y - 1)]
 		[(int)data->game.x] != '1')
-		data->game.y = data->game.y - 1;
+		do_move(&data->game.y, -1, data);
 	else if (keycode == 115 && data->map[(int)(data->game.y + 1)]
 		[(int)data->game.x] != '1')
-		data->game.y = data->game.y + 1;
+		do_move(&data->game.y, 1, data);
 	else if (keycode == 100 && data->map[(int)data->game.y]
 		[(int)(data->game.x + 1)] != '1')
-		data->game.x = data->game.x + 1;
+		do_move(&data->game.x, 1, data);
 	else if (keycode == 97 && data->map[(int)data->game.y]
 		[(int)(data->game.x - 1)] != '1')
-		data->game.x = data->game.x - 1;
+		do_move(&data->game.x, -1, data);
 	if (data->map[(int)data->game.y][(int)data->game.x] == 'C')
 		data->game.collect--;
 	else if (data->map[(int)data->game.y][(int)data->game.x] == 'E'
-	&& data->game.collect == 0)
+	&& data->game.collect == 0 )//|| data->game.step < 0)
 		close_window(data);
 	if (data->map[(int)data->game.y][(int)data->game.x] != 'E')
 		data->map[(int)data->game.y][(int)data->game.x] = 'P';

@@ -36,8 +36,11 @@ int	load_xpm(t_data *data)
 	data->tex[2].r_path = ft_strdup("srcs/img/collect.xpm");
 	data->tex[3].r_path = ft_strdup("srcs/img/door.xpm");
 	data->tex[4].r_path = ft_strdup("srcs/img/player.xpm");
+	data->tex[5].r_path = ft_strdup("srcs/img/mob_one.xpm");
+	data->tex[6].r_path = ft_strdup("srcs/img/mob_two.xpm");
+	data->tex[7].r_path = ft_strdup("srcs/img/mob_three.xpm");
 	i = 0;
-	while (i < 5)
+	while (i < 8)
 	{	
 		data->tex[i].img = mlx_xpm_file_to_image(data->mlx,
 				data->tex[i].r_path, &data->tex[i].img_width,

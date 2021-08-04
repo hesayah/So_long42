@@ -57,6 +57,20 @@ static	void	draw_square(t_data *data, float pos_x, float pos_y, int index)
 	}
 }
 
+void		draw_mob(t_data *data, int pos_x, int pos_y)
+{
+	int index;
+
+	index = 5;
+	while (index < 8)
+	{
+		draw_square(data, pos_x, pos_y, index);
+		mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+		mlx_clear_window(data->mlx, data->win);
+		index++;
+	}
+}
+
 void	draw_game(t_data *data)
 {
 	int	x;
@@ -104,11 +118,41 @@ static void	draw_floor(t_data *data)
 	}
 }
 
+static void	draw_mini_square(t_data *data, int x, int y)
+{
+	int	x_max;
+	int	y_max;
+
+	y_max = y + 20;
+	x_max = x + 20;
+	while (y < y_max)
+	{
+		x = 0;
+		while (x < x_max)
+		{
+			my_mlx_pixel_put(x, y, 1, data);
+			x++;
+		}
+		y++;
+	}
+}
+
 int	render_next_frame(t_data *data)
 {
-	mlx_clear_window(data->mlx, data->win);
-	draw_floor(data);
-	draw_game(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+	if (data->game.frame == 8)
+		data->game.frame = 5;
+	if (data->game.step >= 0)
+	{
+		mlx_clear_window(data->mlx, data->win);
+		draw_floor(data);
+		draw_game(data);
+		draw_mini_square(data, 0, 0);
+		draw_square(data, 1, 1, data->game.frame);
+		mlx_put_image_to_window(data->mlx, data->win, data->img, 0,0);
+		mlx_string_put(data->mlx, data->win, 5, 15, 16777215, data->game.step_str);
+		data->game.frame++;
+	}
+	else
+		mlx_string_put(data->mlx, data->win, data->w_w/2, data->w_h/2, 16777215, ("GAME OVER !!! MOOOOUUUUAHAHAHA"));
 	return (0);
 }

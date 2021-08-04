@@ -85,6 +85,7 @@ char	*ft_itoa(int n)
 	int		len;
 	long	nb;
 	char	*num;
+	char	*tmp;
 
 	nb = n;
 	len = ft_len(nb);
@@ -93,6 +94,8 @@ char	*ft_itoa(int n)
 		return (NULL);
 	ft_memset(num, 0, len + 1);
 	ft_itoa_two(num, nb, len);
+	tmp = num;
 	num = ft_strrev(num);
+	free(tmp);
 	return (num);
 }
