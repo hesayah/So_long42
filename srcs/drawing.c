@@ -147,10 +147,12 @@ int	render_next_frame(t_data *data)
 		draw_floor(data);
 		draw_game(data);
 		draw_mini_square(data, 0, 0);
-		draw_square(data, 1, 1, data->game.frame);
+		draw_square(data, data->game.mob_x, data->game.mob_y, data->game.frame);
 		mlx_put_image_to_window(data->mlx, data->win, data->img, 0,0);
 		mlx_string_put(data->mlx, data->win, 5, 15, 16777215, data->game.step_str);
 		data->game.frame++;
+		if (((int)data->game.y == data->game.mob_y && (int)data->game.x == data->game.mob_x))
+			data->game.step = -1;
 	}
 	else
 		mlx_string_put(data->mlx, data->win, data->w_w/2, data->w_h/2, 16777215, ("GAME OVER !!! MOOOOUUUUAHAHAHA"));

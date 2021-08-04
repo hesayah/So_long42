@@ -64,6 +64,8 @@ typedef struct		s_game
 	int				spown;
 	int				collect;
 	float			step;
+	int				mob_x;
+	int				mob_y;
 	int				frame;
 	char			*step_str;
 }					t_game;
@@ -93,6 +95,7 @@ int				pars_brain(char *file, t_data *data);
 int				pars_map(t_data *data);
 int				load_xpm(t_data *data);
 int				render_next_frame(t_data *data);
+void			move_mob(t_data *data);
 void			draw_map(t_data *data);
 void			my_mlx_pixel_put(int x, int y, int color, t_data *data);
 int				action_key(int keycode, t_data *data);

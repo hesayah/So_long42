@@ -21,6 +21,8 @@ void	init_data(t_data *data)
 	data->game.spown = 0;
 	data->game.step = 20;
 	data->game.frame = 5;
+	data->game.mob_x = 1;
+	data->game.mob_y = 1;
 	data->map = NULL;
 	data->game.step_str = NULL;
 	data->tex[0].r_path = NULL;
