@@ -12,23 +12,6 @@
 
 #include "../so_long.h"
 
-/*static int	check_value(char *map)
-{
-	int	x;
-
-	x = 0;
-	while (map[x])
-	{
-		if (ft_c_in_str(map[x], "01CEP") == 0)
-		{
-			ft_putstr_fd("ERROR : ERROR MAP\n", 0);
-			return (0);
-		}
-		x++;
-	}
-	return (1);
-}*/
-
 static int	check_if_close(t_data *data)
 {
 	int	x;
@@ -79,8 +62,6 @@ static int	init_game_value(t_data *data, int x, int y)
 	}
 	if (!load_xpm(data))
 		return (0);
-	ft_putstr_fd(data->game.step_str, 0);
-	ft_putstr_fd("\n", 0);
 	return (1);
 }
 
@@ -101,9 +82,9 @@ static int	assigne_value(t_data *data, int x, int y)
 		data->game.door++;
 		data->map[y][x] == '0';
 	}
-	if (ft_c_in_str(map[x], "01CEP") == 0)
+	if (ft_c_in_str(data->map[y][x], "01CEP") == 0)
 	{
-		ft_putstr_fd("ERROR : ERROR MAP\n", 0);
+		ft_putstr_fd("ERROR : ERROR PARSING\n", 0);
 		return (0);
 	}
 	return (1);
@@ -131,8 +112,6 @@ int	pars_map(t_data *data)
 	len = ft_strlen(data->map[0]);
 	while (data->map[++y])
 	{
-		if (!check_value(data->map[y]))
-			return (0);
 		if (len != ft_strlen(data->map[y]))
 		{
 			ft_putstr_fd("ERROR : MAP NOT RECTANGLE\n", 0);
