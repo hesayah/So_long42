@@ -6,13 +6,13 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 23:02:35 by hesayah           #+#    #+#             */
-/*   Updated: 2021/08/05 17:44:21 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/08/05 22:16:36 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-static int	check_value(char *map)
+/*static int	check_value(char *map)
 {
 	int	x;
 
@@ -27,7 +27,7 @@ static int	check_value(char *map)
 		x++;
 	}
 	return (1);
-}
+}*/
 
 static int	check_if_close(t_data *data)
 {
@@ -84,7 +84,7 @@ static int	init_game_value(t_data *data, int x, int y)
 	return (1);
 }
 
-static void	assigne_value(t_data *data, int x, int y)
+static int	assigne_value(t_data *data, int x, int y)
 {
 	if (data->map[y][x] == 'C')
 		data->game.collect++;
@@ -101,6 +101,24 @@ static void	assigne_value(t_data *data, int x, int y)
 		data->game.door++;
 		data->map[y][x] == '0';
 	}
+	if (ft_c_in_str(map[x], "01CEP") == 0)
+	{
+		ft_putstr_fd("ERROR : ERROR MAP\n", 0);
+		return (0);
+	}
+	return (1);
+}
+
+static int	check_pars_value(t_data *data)
+{
+	if (data->game.spown != 1 || data->game.collect == 0
+		|| data->game.door_x == 0 || data->game.door_y == 0
+		|| data->game.door != 1)
+	{
+		ft_putstr_fd("ERROR : ERROR PARSING\n", 0);
+		return (0);
+	}
+	return (1);
 }
 
 int	pars_map(t_data *data)
@@ -122,14 +140,10 @@ int	pars_map(t_data *data)
 		}
 		x = -1;
 		while (data->map[y][++x])
-			assigne_value(data, x, y);
+			if (!assigne_value(data, x, y))
+				return (0);
 	}
-	if (data->game.spown != 1 || data->game.collect == 0 
-		|| data->game.door_x == 0 || data->game.door_y == 0
-		|| data->game.door != 1)
-	{
-		ft_putstr_fd("ERROR : ERROR PARSING\n", 0);
+	if (!check_pars_value(data))
 		return (0);
-	}
 	return (init_game_value(data, len, y));
 }
