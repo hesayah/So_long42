@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 23:12:54 by hesayah           #+#    #+#             */
-/*   Updated: 2021/08/05 17:37:51 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/08/05 19:36:58 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ static void	do_move(float *variable, int value, t_data *data)
 	data->game.step--;
 	tmp = data->game.step_str;
 	data->game.step_str = ft_itoa(data->game.step);
+	if (!data->game.step_str)
+	{
+		data->game.step = -1;
+		ft_putstr_fd("ERRROR : MALLOC FAIL");
+	}
 	free(tmp);
 }
 

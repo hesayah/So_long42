@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 23:11:31 by hesayah           #+#    #+#             */
-/*   Updated: 2021/08/02 23:12:26 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/08/05 19:41:35 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,14 @@ static int	get_map(char *file, t_data *data)
 	while (get_next_line(fd, &line) > 0)
 	{
 		data->map[i] = ft_strdup(line);
+		if (!data->map[i])
+			return (0);
 		free(line);
 		i++;
 	}
 	data->map[i] = ft_strdup(line);
+	if (!data->map[i])
+		return (0);
 	data->map[i + 1] = NULL;
 	free(line);
 	return (1);

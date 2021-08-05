@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 22:57:42 by hesayah           #+#    #+#             */
-/*   Updated: 2021/08/02 23:02:04 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/08/05 19:40:41 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	check_ext(char *file)
 	i = 0;
 	while (file[i] != '\0' && file[i] != '.')
 		i++;
-	if (ft_strncmp(file + i, ".cub", 5) == 0)
+	if (ft_strncmp(file + i, ".ber", 5) == 0)
 		return (0);
 	return (1);
 }

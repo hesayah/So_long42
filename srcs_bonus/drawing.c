@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 23:19:15 by hesayah           #+#    #+#             */
-/*   Updated: 2021/08/05 18:28:48 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/08/05 19:30:44 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	draw_game(t_data *data)
 	draw_square(data, data->game.door_x, data->game.door_y, 3);
 	draw_square(data, data->game.x, data->game.y, 4);
 }
-
 
 int	render_next_frame(t_data *data)
 {

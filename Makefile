@@ -6,11 +6,13 @@
 #    By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/08 00:23:17 by hesayah           #+#    #+#              #
-#    Updated: 2021/08/02 23:34:33 by hesayah          ###   ########.fr        #
+#    Updated: 2021/08/05 19:32:26 by hesayah          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = SoLong
+
+NAME_BONUS = SoBonus
 
 INCLUDE = So_long.h libs/libft/libft.h libs/gnl/get_next_line.h
 
@@ -64,18 +66,19 @@ $(NAME):${OBJ}
 	@$(GCC) -o $(NAME) ${OBJ} $(FLAGS) $(LIB) $(MLX)
 	@echo "\033[32m[JOB DONE ! YOU CAN RUN THE GAME :D]"
 
-bonus: $(NAME)
-$(NAME):${OBJ_BONUS}
-	@echo "\033[32m[Compile Lib...]"
+bonus: $(NAME_BONUS)
+$(NAME_BONUS):${OBJ_BONUS}
+	@echo "\033[32m[Compile Lib]"
 	@$(MAKE) -C $ $(LIBFT_PATH)
-	@echo "\033[32m[Compile mlx...]"
+	@echo "\033[32m[Compile mlx]"
 	@$(MAKE) -C $ $(MLX_PATH)
-	@echo "\033[32m[Compile So_long...]"
-	@$(GCC) -o $(NAME) ${OBJ_BONUS} $(FLAGS) $(LIB) $(MLX)
+	@echo "\033[32m[Compile So_long_bonus...]"
+	@$(GCC) -o $(NAME_BONUS) ${OBJ_BONUS} $(FLAGS) $(LIB) $(MLX)
 	@echo "\033[32m[JOB DONE ! YOU CAN RUN THE GAME :D]"
 
 clean:
 	@rm -rf $(OBJ)
+	@rm -rf $(OBJ_BONUS)
 	@echo "\033[32m[Clean-UP DONE]"
 	
 fclean: clean
