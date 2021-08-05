@@ -37,20 +37,6 @@ static void	do_move(float *variable, int value, t_data *data)
 	free(tmp);
 }
 
-void	move_mob(t_data *data)
-{
-	if (data->map[data->game.mob_y - 1][data->game.mob_x] != '1'
-		&& data->game.frame == 5)
-		data->game.mob_y += -1;
-	else if (data->map[data->game.mob_y + 1][data->game.mob_x] != '1'
-		&& data->game.frame == 6)
-		data->game.mob_y += +1;
-	else if (data->map[data->game.mob_y][data->game.mob_x + 1] != '1'
-			&& data->game.frame == 7)
-		data->game.mob_x += 1;
-	else if (data->map[data->game.mob_y][data->game.mob_x - 1] != '1')
-		data->game.mob_x += -1;
-}
 
 static void	move(int keycode, t_data *data)
 {
@@ -86,6 +72,5 @@ int	action_key(int keycode, t_data *data)
 	else if (keycode == 119 || keycode == 97 || keycode == 100
 		|| keycode == 115)
 		move(keycode, data);
-	move_mob(data);
 	return (0);
 }

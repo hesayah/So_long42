@@ -26,6 +26,12 @@ static void	clean_up_two(t_data *data)
 		mlx_destroy_image(data->mlx, data->tex[3].img);
 	if (data->tex[4].img)
 		mlx_destroy_image(data->mlx, data->tex[4].img);
+	if (data->tex[5].img)
+		mlx_destroy_image(data->mlx, data->tex[5].img);
+	if (data->tex[6].img)
+		mlx_destroy_image(data->mlx, data->tex[6].img);
+	if (data->tex[7].img)
+		mlx_destroy_image(data->mlx, data->tex[7].img);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
 }
@@ -44,6 +50,12 @@ int	clean_up(t_data *data)
 		free(data->tex[3].r_path);
 	if (data->tex[4].r_path)
 		free(data->tex[4].r_path);
+	if (data->tex[5].r_path)
+		free(data->tex[5].r_path);
+	if (data->tex[6].r_path)
+		free(data->tex[6].r_path);
+	if (data->tex[7].r_path)
+		free(data->tex[7].r_path);
 	clean_up_two(data);
 	exit(0);
 	return (0);

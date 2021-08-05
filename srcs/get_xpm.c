@@ -29,15 +29,6 @@ static int	get_path_tex(t_data *data)
 	data->tex[4].r_path = ft_strdup("srcs/img/player.xpm");
 	if (!data->tex[4].r_path)
 		return (0);
-	data->tex[5].r_path = ft_strdup("srcs/img/mob_one.xpm");
-	if (!data->tex[5].r_path)
-		return (0);
-	data->tex[6].r_path = ft_strdup("srcs/img/mob_two.xpm");
-	if (!data->tex[6].r_path)
-		return (0);
-	data->tex[7].r_path = ft_strdup("srcs/img/mob_three.xpm");
-	if (!data->tex[7].r_path)
-		return (0);
 	return (1);
 }
 
@@ -46,14 +37,19 @@ int	load_xpm(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i < 8)
+	if (!get_path_tex(data))
+	{
+		ft_putstr_fd("Error : GETTING PATH TEX\n", 0);
+		return (0);
+	}
+	while (i < 5)
 	{
 		data->tex[i].img = mlx_xpm_file_to_image(data->mlx,
 				data->tex[i].r_path, &data->tex[i].img_width,
 				&data->tex[i].img_height);
 		if (!data->tex[i].img)
 		{
-			printf("Error : Loading textures\n");
+			ft_putstr_fd("Error : Loading textures\n", 0);
 			return (0);
 		}
 		(data->tex[i].addr = (int *)mlx_get_data_addr(data->tex[i].img,

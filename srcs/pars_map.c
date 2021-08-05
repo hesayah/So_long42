@@ -71,10 +71,7 @@ static int	init_game_value(t_data *data, int x, int y)
 	data->w_h = data->game.m_h * (int)data->game.map_y;
 	data->game.step_str = ft_itoa(data->game.step);
 	if (!data->game.step_str)
-	{
-		ft_putstr_fd("ERROR : MALLOC FAIL\n", 0);
 		return (0);
-	}
 	if (!check_if_close(data))
 	{
 		ft_putstr_fd("ERROR : MAP NOT CLOSE\n", 0);
@@ -82,6 +79,8 @@ static int	init_game_value(t_data *data, int x, int y)
 	}
 	if (!load_xpm(data))
 		return (0);
+	ft_putstr_fd(data->game.step_str, 0);
+	ft_putstr_fd("\n", 0);
 	return (1);
 }
 

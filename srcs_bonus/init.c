@@ -12,6 +12,11 @@
 
 #include "../so_long.h"
 
+static void	init_data_two(t_data *data)
+{
+	
+}
+
 void	init_data(t_data *data)
 {
 	data->w_h = 0;
@@ -30,10 +35,16 @@ void	init_data(t_data *data)
 	data->tex[2].r_path = NULL;
 	data->tex[3].r_path = NULL;
 	data->tex[4].r_path = NULL;
+	data->tex[5].r_path = NULL;
+	data->tex[6].r_path = NULL;
+	data->tex[7].r_path = NULL;
 	data->tex[0].img = NULL;
 	data->tex[1].img = NULL;
 	data->tex[2].img = NULL;
 	data->tex[3].img = NULL;
 	data->tex[4].img = NULL;
+	data->tex[5].img = NULL;
+	data->tex[6].img = NULL;
+	data->tex[7].img = NULL;
 	data->err = 0;
 }

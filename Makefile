@@ -20,12 +20,27 @@ SRCS =	libs/gnl/get_next_line_utils.c \
 		srcs/init.c \
 		srcs/pars_brain.c \
 		srcs/pars_map.c \
+		srcs/get_xpm.c \
 		srcs/key.c \
 		srcs/drawing.c \
 		srcs/drawing_utils.c \
 		srcs/exit.c
 
 OBJ = $(SRCS:.c=.o)
+
+SRCS_BONUS =	libs/gnl/get_next_line_utils.c \
+				libs/gnl/get_next_line.c \
+				srcs_bonus/so_long.c \
+				srcs_bonus/init.c \
+				srcs_bonus/pars_brain.c \
+				srcs_bonus/pars_map.c \
+				srcs_bonus/get_xpm.c \
+				srcs_bonus/key.c \
+				srcs_bonus/drawing.c \
+				srcs_bonus/drawing_utils.c \
+				srcs_bonus/exit.c
+
+OBJ_BONUS = $(SRCS_BONUS:.c=.o)
 
 LIBFT_PATH = libs/libft
 
@@ -50,13 +65,13 @@ $(NAME):${OBJ}
 	@echo "\033[32m[JOB DONE ! YOU CAN RUN THE GAME :D]"
 
 bonus: $(NAME)
-$(NAME):${OBJ}${OBJ_BONUS}
+$(NAME):${OBJ_BONUS}
 	@echo "\033[32m[Compile Lib...]"
 	@$(MAKE) -C $ $(LIBFT_PATH)
 	@echo "\033[32m[Compile mlx...]"
 	@$(MAKE) -C $ $(MLX_PATH)
 	@echo "\033[32m[Compile So_long...]"
-	@$(GCC) -o $(NAME) ${OBJ} $(FLAGS) $(LIB) $(MLX)
+	@$(GCC) -o $(NAME) ${OBJ_BONUS} $(FLAGS) $(LIB) $(MLX)
 	@echo "\033[32m[JOB DONE ! YOU CAN RUN THE GAME :D]"
 
 clean:

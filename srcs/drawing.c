@@ -20,7 +20,7 @@ static	void	scale(t_data *data, int index)
 			/ data->game.m_h);
 }
 
-static	void	draw_in_img(int x, int y, t_data *data)
+static	void	draw_in_img(int x, int y, int index, t_data *data)
 {
 	data->draw.pixel_x += data->draw.scale_x;
 	data->draw.color = data->tex[index].addr[data->tex[index].img_width
@@ -45,27 +45,13 @@ static	void	draw_square(t_data *data, float pos_x, float pos_y, int index)
 		while (x > (data->game.m_w * pos_x)
 			&& x <= data->game.m_w * (pos_x + 1))
 		{
-			draw_in_img(x, y, data);
+			draw_in_img(x, y, index, data);
 			x++;
 		}
 		data->draw.pixel_y += data->draw.scale_y;
 		y++;
 	}
 }
-
-/*void		draw_mob(t_data *data, int pos_x, int pos_y)
-{
-	int index;
-
-	index = 5;
-	while (index < 8)
-	{
-		draw_square(data, pos_x, pos_y, index);
-		mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
-		mlx_clear_window(data->mlx, data->win);
-		index++;
-	}
-}*/
 
 void	draw_game(t_data *data)
 {
@@ -92,40 +78,14 @@ void	draw_game(t_data *data)
 	draw_square(data, data->game.x, data->game.y, 4);
 }
 
-/*static void	draw_floor(t_data *data)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (data->map[y])
-	{
-		x = 0;
-		while (data->map[y][x])
-		{
-			if (data->map[y][x] != '1')
-				draw_square(data, x, y, 0);
-			x++;
-		}
-		y++;
-	}
-}*/
-
 int	render_next_frame(t_data *data)
 {
-	if (data->game.frame == 8)
-		data->game.frame = 5;
 	if (data->game.step >= 0)
 	{
 		mlx_clear_window(data->mlx, data->win);
-		//draw_floor(data);
 		draw_game(data);
-		//draw_mini_square(data, 0, 0);
-		draw_square(data, data->game.mob_x, data->game.mob_y, data->game.frame);
 		mlx_put_image_to_window(data->mlx, data->win,
 			data->img, 0, 0);
-		mlx_string_put(data->mlx, data->win, 5, 15,
-			16777215, data->game.step_str);
 		data->game.frame++;
 		if (((int)data->game.y == data->game.mob_y
 				&& (int)data->game.x == data->game.mob_x))

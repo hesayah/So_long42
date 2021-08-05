@@ -26,23 +26,3 @@ unsigned	long	ft_rgb(int r, int g, int b)
 		return ((int)(-1));
 	return (((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff));
 }
-
-void	draw_mini_square(t_data *data, int x, int y)
-{
-	int	x_max;
-	int	y_max;
-
-	y_max = y + 20;
-	x_max = x + 20;
-	while (y < y_max)
-	{
-		x = 0;
-		while (x < x_max)
-		{
-			my_mlx_pixel_put(x, y, 1, data);
-			x++;
-		}
-		y++;
-	}
-}
-
