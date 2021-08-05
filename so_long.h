@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 00:24:49 by hesayah           #+#    #+#             */
-/*   Updated: 2021/08/02 23:20:29 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/08/05 17:48:11 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@
 # include "libs/libft/libft.h"
 # include "libs/gnl/get_next_line.h"
 
-# define DEBUG printf("fichier : %s,  line : %i\n", __FILE__, __LINE__);
-
-typedef struct		s_tex
+typedef struct s_tex
 {
 	char			*r_path;
 	int				bits_per_pixel;
@@ -38,7 +36,7 @@ typedef struct		s_tex
 	int				*addr;
 }					t_tex;
 
-typedef struct		s_draw
+typedef struct s_draw
 {
 	int				x;
 	int				y;
@@ -49,9 +47,11 @@ typedef struct		s_draw
 	float			scale_y;
 	unsigned long	color;
 	int				pixel;
+	float			pixel_x;
+	float			pixel_y;
 }					t_draw;
 
-typedef struct		s_game
+typedef struct s_game
 {
 	float			x;
 	float			y;
@@ -70,7 +70,7 @@ typedef struct		s_game
 	char			*step_str;
 }					t_game;
 
-typedef struct		s_data
+typedef struct s_data
 {
 	void			*mlx;
 	void			*win;
