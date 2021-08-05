@@ -29,6 +29,11 @@ static void	do_move(float *variable, int value, t_data *data)
 	data->game.step--;
 	tmp = data->game.step_str;
 	data->game.step_str = ft_itoa(data->game.step);
+	if (data->game.step >= 0)
+	{
+		ft_putstr_fd(data->game.step_str, 0);
+		ft_putstr_fd("\n", 0);
+	}
 	free(tmp);
 }
 

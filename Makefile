@@ -25,13 +25,13 @@ SRCS =	libs/gnl/get_next_line_utils.c \
 		srcs/drawing_utils.c \
 		srcs/exit.c
 
+OBJ = $(SRCS:.c=.o)
+
 LIBFT_PATH = libs/libft
 
 MLX_PATH = libs/mlx
 
 LIB = libs/libft/libft.a libs/mlx/libmlx.a
-
-OBJ = $(SRCS:.c=.o)
 
 GCC = gcc
 
@@ -41,6 +41,16 @@ MLX = -Llibs/mlx -lmlx -lXext -lX11 -lbsd -lm
 
 all: $(NAME)
 $(NAME):${OBJ}
+	@echo "\033[32m[Compile Lib...]"
+	@$(MAKE) -C $ $(LIBFT_PATH)
+	@echo "\033[32m[Compile mlx...]"
+	@$(MAKE) -C $ $(MLX_PATH)
+	@echo "\033[32m[Compile So_long...]"
+	@$(GCC) -o $(NAME) ${OBJ} $(FLAGS) $(LIB) $(MLX)
+	@echo "\033[32m[JOB DONE ! YOU CAN RUN THE GAME :D]"
+
+bonus: $(NAME)
+$(NAME):${OBJ}${OBJ_BONUS}
 	@echo "\033[32m[Compile Lib...]"
 	@$(MAKE) -C $ $(LIBFT_PATH)
 	@echo "\033[32m[Compile mlx...]"
