@@ -32,7 +32,7 @@ static void	do_move(float *variable, int value, t_data *data)
 	if (!data->game.step_str)
 	{
 		data->game.step = -1;
-		ft_putstr_fd("ERRROR : MALLOC FAIL");
+		ft_putstr_fd("ERRROR : MALLOC FAIL", 0);
 	}
 	if (data->game.step >= 0)
 	{

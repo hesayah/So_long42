@@ -86,10 +86,6 @@ int	render_next_frame(t_data *data)
 		draw_game(data);
 		mlx_put_image_to_window(data->mlx, data->win,
 			data->img, 0, 0);
-		data->game.frame++;
-		if (((int)data->game.y == data->game.mob_y
-				&& (int)data->game.x == data->game.mob_x))
-			data->game.step = -1;
 	}
 	else
 		mlx_string_put(data->mlx, data->win, data->w_w / 2, data->w_h / 2,

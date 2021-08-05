@@ -59,11 +59,12 @@ typedef struct s_game
 	float			m_h;
 	float			map_x;
 	float			map_y;
-	float			door_x;
-	float			door_y;
+	int				door_x;
+	int				door_y;
+	int				door;
 	int				spown;
 	int				collect;
-	float			step;
+	int				step;
 	int				mob_x;
 	int				mob_y;
 	int				frame;

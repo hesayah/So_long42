@@ -46,7 +46,7 @@ int	check_ext(char *file)
 	i = 0;
 	while (file[i] != '\0' && file[i] != '.')
 		i++;
-	if (ft_strncmp(file + i, ".ber", 5) == 0)
+	if (ft_strncmp(file + i, ".ber", 5) != 0)
 		return (0);
 	return (1);
 }

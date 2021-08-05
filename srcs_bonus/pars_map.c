@@ -71,10 +71,7 @@ static int	init_game_value(t_data *data, int x, int y)
 	data->w_h = data->game.m_h * (int)data->game.map_y;
 	data->game.step_str = ft_itoa(data->game.step);
 	if (!data->game.step_str)
-	{
-		ft_putstr_fd("ERROR : MALLOC FAIL\n", 0);
 		return (0);
-	}
 	if (!check_if_close(data))
 	{
 		ft_putstr_fd("ERROR : MAP NOT CLOSE\n", 0);
@@ -82,6 +79,8 @@ static int	init_game_value(t_data *data, int x, int y)
 	}
 	if (!load_xpm(data))
 		return (0);
+	ft_putstr_fd(data->game.step_str, 0);
+	ft_putstr_fd("\n", 0);
 	return (1);
 }
 
@@ -99,6 +98,7 @@ static void	assigne_value(t_data *data, int x, int y)
 	{
 		data->game.door_x = x;
 		data->game.door_y = y;
+		data->game.door++;
 		data->map[y][x] == '0';
 	}
 }
@@ -124,9 +124,11 @@ int	pars_map(t_data *data)
 		while (data->map[y][++x])
 			assigne_value(data, x, y);
 	}
-	if (data->game.spown > 1)
+	if (data->game.spown != 1 || data->game.collect == 0 
+		|| data->game.door_x == 0 || data->game.door_y == 0
+		|| data->game.door == 0)
 	{
-		ft_putstr_fd("ERROR : SPOWN ERROR\n", 0);
+		ft_putstr_fd("ERROR : ERROR PARSING\n", 0);
 		return (0);
 	}
 	return (init_game_value(data, len, y));

@@ -19,7 +19,10 @@ void	init_data(t_data *data)
 	mlx_get_screen_size(data->mlx, &data->w_max, &data->h_max);
 	data->game.collect = 0;
 	data->game.spown = 0;
-	data->game.step = 20;
+	data->game.door_x = 0;
+	data->game.door_y = 0;
+	data->game.door = 0;
+	data->game.step = 99;
 	data->game.frame = 5;
 	data->game.mob_x = 1;
 	data->game.mob_y = 1;

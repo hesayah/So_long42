@@ -98,6 +98,7 @@ static void	assigne_value(t_data *data, int x, int y)
 	{
 		data->game.door_x = x;
 		data->game.door_y = y;
+		data->game.door++;
 		data->map[y][x] == '0';
 	}
 }
@@ -123,9 +124,11 @@ int	pars_map(t_data *data)
 		while (data->map[y][++x])
 			assigne_value(data, x, y);
 	}
-	if (data->game.spown > 1)
+	if (data->game.spown != 1 || data->game.collect == 0 
+		|| data->game.door_x == 0 || data->game.door_y == 0
+		|| data->game.door == 0)
 	{
-		ft_putstr_fd("ERROR : SPOWN ERROR\n", 0);
+		ft_putstr_fd("ERROR : ERROR PARSING\n", 0);
 		return (0);
 	}
 	return (init_game_value(data, len, y));

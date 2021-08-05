@@ -10,9 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = SoLong
+NAME = so_long
 
-NAME_BONUS = SoBonus
+NAME_BONUS = so_Bonus
 
 INCLUDE = So_long.h libs/libft/libft.h libs/gnl/get_next_line.h
 
@@ -85,6 +85,7 @@ fclean: clean
 	@$(MAKE) -C $ $(LIBFT_PATH) fclean
 	@$(MAKE) -C $ $(MLX_PATH) clean
 	@rm -rf $(NAME)
+	@rm -rf $(NAME_BONUS)
 	@echo "\033[32m[Clean-UP DONE]"
 
 re: fclean all

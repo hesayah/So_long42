@@ -12,10 +12,12 @@
 
 #include "../so_long.h"
 
+#include "../so_long.h"
+
 static void	loop_hook(t_data *data)
 {
 	data->win = mlx_new_window(data->mlx, data->w_w,
-			data->w_h, "HeSayah SoLong");
+			data->w_h, "HeSayah SoLong BONUS");
 	data->img = mlx_new_image(data->mlx, data->w_w, data->w_h);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 			&data->line_length, &data->endian);
@@ -46,7 +48,7 @@ int	check_ext(char *file)
 	i = 0;
 	while (file[i] != '\0' && file[i] != '.')
 		i++;
-	if (ft_strncmp(file + i, ".ber", 5) == 0)
+	if (ft_strncmp(file + i, ".ber", 5) != 0)
 		return (0);
 	return (1);
 }
