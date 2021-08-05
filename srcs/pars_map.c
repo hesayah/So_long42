@@ -126,7 +126,7 @@ int	pars_map(t_data *data)
 	}
 	if (data->game.spown != 1 || data->game.collect == 0 
 		|| data->game.door_x == 0 || data->game.door_y == 0
-		|| data->game.door == 0)
+		|| data->game.door != 1)
 	{
 		ft_putstr_fd("ERROR : ERROR PARSING\n", 0);
 		return (0);
